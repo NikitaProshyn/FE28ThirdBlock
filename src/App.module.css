@@ -1,0 +1,48 @@
+.app {
+   height: 100vh;
+   padding: 50px;
+   display: flex;
+   justify-content: space-between;
+}
+
+.button {
+   width: 132px;
+   height: 56px;
+   border-radius: 2px;
+   border: none;
+   font-size: 16px;
+   cursor: pointer;
+   transition: 1s;
+}
+
+.primary {
+   background-color: #2231aa;
+   color: white;
+}
+
+.primary:hover {
+   background-color: #5360cd;
+}
+
+.secondary {
+   background-color: #e8e8e8;
+   color: #313037;
+}
+
+.secondary:hover {
+   background-color: #dadada;
+}
+
+.secondary2 {
+   background-color: white;
+   color: #fd3419;
+}
+
+.secondary2:hover {
+   border: 1px solid #e8e8e8;
+   transition: none;
+}
+
+.secondary2Disabled {
+   background-color: white;
+}
