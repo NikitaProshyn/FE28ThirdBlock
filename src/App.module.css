@@ -4,6 +4,22 @@
    max-width: 1170px;
 }
 
+.buttons_wrap {
+   display: flex;
+}
+
+.primary_wrap {
+   display: grid;
+}
+
+.secondary_wrap {
+   display: grid;
+}
+
+.secondary2_wrap {
+   display: grid;
+}
+
 .button {
    width: 132px;
    height: 56px;
@@ -12,11 +28,8 @@
    font-size: 16px;
    cursor: pointer;
    transition: 1s;
-}
-
-.buttons_wrap {
-   display: flex;
-   justify-content: space-between;
+   margin-top: 30px;
+   margin-right: 30px;
 }
 
 .primary {
@@ -25,7 +38,7 @@
 }
 
 .primary:hover {
-   background-color: #5360cd;
+   background-color: #717bd6;
 }
 
 .secondary {
@@ -34,7 +47,7 @@
 }
 
 .secondary:hover {
-   background-color: #dadada;
+   background-color: #868686;
 }
 
 .secondary2 {
@@ -43,7 +56,7 @@
 }
 
 .secondary2:hover {
-   border: 1px solid #e8e8e8;
+   border: 3px solid #e8e8e8;
    transition: none;
 }
 
@@ -81,4 +94,56 @@
    margin-right: 16px;
    font-size: 16px;
    font-weight: 600;
+}
+
+.title_wrap {
+   margin-top: 100px;
+   background-color: rgb(231, 228, 228);
+   width: 200px;
+   text-align: center;
+}
+
+.title {
+   font-size: 50px;
+   font-weight: bold;
+}
+
+.tabs_wrap {
+   display: flex;
+   margin-top: 100px;
+}
+
+.tab {
+   margin-left: 30px;
+   font-size: 30px;
+   font-weight: 500;
+   cursor: pointer;
+   transition: 1s;
+   align-items: center;
+}
+
+.tab:first-child {
+   margin-left: 0px;
+}
+
+.all {
+   text-align: center;
+}
+
+.all:after {
+   content: '';
+   display: block;
+   width: 100px;
+   height: 2px;
+   background-color: black;
+   margin-top: 24px;
+}
+
+.favorite:hover {
+   color: #2231aa;
+}
+
+.popular {
+   opacity: 0.4;
+   user-select: none;
 }
