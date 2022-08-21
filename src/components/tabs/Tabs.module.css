@@ -1,0 +1,40 @@
+.tab_list {
+   display: flex;
+   list-style: none;
+}
+
+.tab_list_item {
+   margin-left: 30px;
+}
+
+.tab_list_item button {
+   font-size: 20px;
+   font-weight: 600;
+   cursor: pointer;
+   transition: 0.5s;
+   align-items: center;
+   border: none;
+   background-color: #ffff;
+}
+
+.tab_list_item:first-child {
+   margin-left: 0;
+}
+
+.all,
+.favorites {
+   color: #313037;
+}
+
+.favorites:hover {
+   color: #2231aa;
+}
+
+.all:after {
+   content: '';
+   display: block;
+   width: 100px;
+   height: 2px;
+   background-color: black;
+   margin-top: 24px;
+}

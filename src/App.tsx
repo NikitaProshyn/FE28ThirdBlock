@@ -1,30 +1,10 @@
 import React from 'react';
 // @ts-ignore
 import styles from './App.module.css';
-
-const Button = ({ title, click, className, condition }: any) => {
-   return (
-      <button
-         onClick={click}
-         className={`${styles.button} ${className || ''}`}
-         disabled={condition}
-      >
-         {title}
-      </button>
-   );
-};
-
-const User = ({ userName }: any) => {
-   return <p>{userName}</p>;
-};
-
-const Title = ({ title, className }: any) => {
-   return <h2 className={className}>{title}</h2>;
-};
-
-const Tabs = ({ title, className }: any) => {
-   return <p className={`${styles.tab} ${className || ''}`}>{title}</p>;
-};
+import Button, { ButtonType } from './components/button';
+import Title from './components/title/';
+import UserName from './components/userName';
+import Tabs from './components/tabs';
 
 function App() {
    return (
@@ -34,45 +14,49 @@ function App() {
                <Button
                   title={'Primary'}
                   click={() => alert('Hello from Primary')}
-                  className={styles.primary}
+                  type={ButtonType.Primary}
                />
-
-               <Button title={'Primary'} condition={true} />
+               <Button
+                  type={ButtonType.Primary}
+                  title={'Primary'}
+                  disabled={true}
+               />
             </div>
             <div className={styles.secondary_wrap}>
                <Button
                   title={'Secondary'}
                   click={() => alert('Hello from Secondary')}
-                  className={styles.secondary}
-               />
-
-               <Button title={'Secondary'} condition={true} />
-            </div>
-            <div className={styles.secondary2_wrap}>
-               <Button
-                  title={'Secondary2'}
-                  click={() => alert('Hello from Secondary2')}
-                  className={styles.secondary2}
+                  type={ButtonType.Secondary}
                />
 
                <Button
-                  title={'Secondary2'}
-                  condition={true}
-                  className={styles.secondary2Disabled}
+                  type={ButtonType.Secondary}
+                  title={'Secondary'}
+                  disabled={true}
                />
             </div>
-         </div>
-         <div className={styles.user}>
-            <User userName={'Artem Malkin'} />
+            <div className={styles.error_wrap}>
+               <Button
+                  title={'Error'}
+                  click={() => alert('Hello from Error')}
+                  type={ButtonType.Error}
+               />
+
+               <Button
+                  type={ButtonType.Error}
+                  title={'Error'}
+                  disabled={true}
+               />
+            </div>
          </div>
          <div className={styles.title_wrap}>
-            <Title title={'Sign In'} className={styles.title} />
+            <Title className={styles.title} title={'Sign Up'} />
          </div>
-
+         <div className={styles.userName_wrap}>
+            <UserName className={styles.UserName} title={'Artem Malkin'} />
+         </div>
          <div className={styles.tabs_wrap}>
-            <Tabs title={'All'} className={styles.all} />
-            <Tabs title={'My Favorites'} className={styles.favorite} />
-            <Tabs title={'Popular'} className={styles.popular} />
+            <Tabs />
          </div>
       </div>
    );
