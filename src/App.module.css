@@ -1,39 +1,16 @@
 * {
-   padding: 0;
-   margin: 0;
-   text-decoration: none;
    box-sizing: border-box;
 }
-
 .app {
-   padding: 50px;
-   max-width: 1170px;
-}
-
-.buttons_wrap {
+   background: rgb(235 228 228 / 19%);
+   padding: 0;
    display: flex;
+   flex-direction: column;
 }
 
-.primary_wrap {
-   display: grid;
-}
-
-.secondary_wrap {
-   display: grid;
-}
-
-.error_wrap {
-   display: grid;
-}
-
-.title_wrap {
-   margin-top: 100px;
-   background-color: rgb(231, 228, 228);
-   width: 200px;
-   text-align: center;
-}
-
-.tabs_wrap {
+.wrapper {
    display: flex;
-   margin-top: 100px;
+   justify-content: center;
+   align-items: center;
+   margin: 50px 0;
 }

@@ -1,25 +1,30 @@
-.userName {
-   margin-top: 100px;
-   width: 235px;
-   height: 85px;
-   background-color: #2231aa;
+.user_wrap {
+   width: 231px;
+   height: 84px;
+   background-color: rgb(34, 49, 170);
    display: flex;
    justify-content: center;
-   text-align: center;
    align-items: center;
+   padding: 18px 30px;
+}
+.user_text {
    color: #fff;
    font-size: 16px;
    font-weight: 600;
+   display: flex;
+   text-align: center;
+   align-items: center;
+   flex-wrap: nowrap;
 }
 
-.userName:before {
+.user_text:before {
    content: 'AM';
    display: flex;
    align-items: center;
    justify-content: center;
    width: 48px;
    height: 48px;
-   background-color: #5360cd;
+   background-color: rgb(83, 96, 205);
    margin-right: 16px;
    font-size: 16px;
    font-weight: 600;
