@@ -8,6 +8,7 @@ import User from './components/user';
 import Header from './components/header';
 import Menu from './components/header/Menu';
 import { Burger, Cancel, SearchIcon } from './assets/icons';
+import CardList from './components/cardList';
 
 function App() {
    const [value, setValue] = useState<string>('');
@@ -34,6 +35,7 @@ function App() {
             }
          />
          {isOpened && <Menu />}
+         <CardList />
       </div>
    );
 }

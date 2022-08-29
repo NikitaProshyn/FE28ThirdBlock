@@ -1,9 +1,7 @@
-import React, { FC } from 'react';
+import React from 'react';
 //@ts-ignore
 import styles from './Card.module.css';
 import classNames from 'classnames';
-import { CardPropsType } from './types';
-import { CardSize } from './types';
 import {
    ThumbsDown,
    ThumbsUp,
@@ -11,12 +9,18 @@ import {
    BookMark,
 } from '../../assets/icons';
 
-const Card: FC<CardPropsType> = ({ post, size }) => {
-   const { id, img, title, text, date } = post;
+export enum CardSize {
+   Large = 'large',
+   Medium = 'medium',
+   Small = 'small',
+}
+
+const Card = ({ card, size }: any) => {
+   const { id, img, title, text, date } = card;
 
    return (
       <div
-         className={classNames(styles.post, {
+         className={classNames(styles.card, {
             [styles.largePost]: size === CardSize.Large,
             [styles.mediumPost]: size === CardSize.Medium,
             [styles.smallPost]: size === CardSize.Small,
