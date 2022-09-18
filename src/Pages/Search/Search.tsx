@@ -12,7 +12,7 @@ const Search = () => {
    return (
       <div
          className={classNames(styles.searchPageWrapper, {
-            [styles.darkContainer]: theme === Theme.Dark,
+            [styles.Theme]: theme === Theme.Dark,
          })}
       >
          <CardSearchList />
