@@ -1,43 +1,36 @@
 import React, { useState } from 'react';
-// @ts-ignore
+import { Provider, useDispatch, useSelector } from 'react-redux';
+
+//@ts-ignore
 import styles from './App.module.css';
-import Button, { ButtonType } from './components/button';
-import Tabs from './components/tabs';
-import Input from './components/input';
-import User from './components/user';
-import Header from './components/header';
-import Menu from './components/header/Menu';
-import { Burger, Cancel, SearchIcon } from './assets/icons';
-import CardList from './components/cardList';
+import classNames from 'classnames';
 
-function App() {
-   const [value, setValue] = useState<string>('');
+import { ThemeProvider } from './Context/ThemeContext/Provider';
+import store from './Redux/store';
+import Router from './Pages/Router';
+import { changeTheme } from './Redux/reducers/themeReducer';
+import ThemeSelectors from './Redux/selectors/themeSelectors';
 
-   const onChange = (inputValue: string) => {
-      setValue(inputValue);
+const App = () => {
+   const theme = useSelector(ThemeSelectors.getTheme);
+   const dispatch = useDispatch();
+
+   const onChangeTheme = () => {
+      dispatch(changeTheme());
    };
-
-   const [isOpened, setOpened] = useState(false);
-
    return (
-      <div className={styles.app}>
-         <Header
-            onClick={() => setOpened(!isOpened)}
-            title={isOpened ? <Cancel /> : <Burger />}
-            input={
-               isOpened ? null : (
-                  <Input
-                     placeholder={'Placeholder'}
-                     onChange={onChange}
-                     value={value}
-                  />
-               )
-            }
-         />
-         {isOpened && <Menu />}
-         <CardList />
-      </div>
+      <ThemeProvider theme={theme} onChangeTheme={onChangeTheme}>
+         <Router />
+      </ThemeProvider>
    );
-}
+};
 
-export default App;
+const AppWithStore = () => {
+   return (
+      <Provider store={store}>
+         <App />
+      </Provider>
+   );
+};
+
+export default AppWithStore;

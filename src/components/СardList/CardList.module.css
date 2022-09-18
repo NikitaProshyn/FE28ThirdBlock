@@ -1,0 +1,37 @@
+.cardsWraper {
+   display: flex;
+   margin-bottom: 100px;
+   flex-direction: row;
+   justify-content: center;
+}
+.leftSideList {
+   display: flex;
+   flex-direction: column;
+   margin-right: 32px;
+}
+.largeCardListWrapper {
+   max-width: 736px;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   align-items: center;
+}
+.mediumCardListWrapper {
+   max-width: 736px;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   align-items: center;
+}
+.mediumCardListWrapper :nth-child(even) {
+   margin-right: 0;
+}
+
+.rightSideList {
+   display: flex;
+   flex-direction: column;
+}
+
+.darkTheme {
+   color: white;
+}

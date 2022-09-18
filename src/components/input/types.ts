@@ -4,4 +4,6 @@ export type InputPropsType = {
    placeholder?: string;
    disabled?: boolean;
    error?: boolean;
+   onBlur?: () => void;
+   className?: string;
 };

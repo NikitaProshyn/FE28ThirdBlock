@@ -1,42 +1,38 @@
-import React, { FC } from 'react';
+import { allowedNodeEnvironmentFlags } from 'process';
+import React, { FC, useState, MouseEvent } from 'react';
 //@ts-ignore
 import styles from './Tabs.module.css';
-import { TabsPropsType } from './type';
+import classNames from 'classnames';
 
-const TABS_NAME = [
-   {
-      key: 'All',
-      title: 'All',
-      className: styles.all,
-   },
-   {
-      key: 'My favorites',
-      title: 'My favorites',
-      className: styles.favorites,
-   },
-   {
-      key: 'popular',
-      title: 'Popular',
-      className: styles.popular,
-      disabled: true,
-   },
-];
+import { useThemeContext, Theme } from '../../Context/ThemeContext/Context';
+import { TabsProps } from './types';
 
-const Tabs = () => {
+const Tabs: FC<TabsProps> = ({ tabs, onClick, activeTab }) => {
+   const { theme } = useThemeContext();
+
    return (
-      <ul className={styles.tab_list}>
-         {TABS_NAME.map((tab) => (
-            <li className={styles.tab_list_item}>
-               <button
-                  key={tab.key}
-                  className={tab.className}
-                  disabled={tab.disabled}
-               >
-                  {tab.title}
-               </button>
-            </li>
-         ))}
-      </ul>
+      <div
+         className={classNames(styles.wrapper, styles.wrapperTabs, {
+            [styles.darkTheme]: theme === Theme.Dark,
+         })}
+      >
+         <ul className={styles.tabList}>
+            {tabs.map(({ key, disabled, title }) => {
+               return (
+                  <li
+                     key={key}
+                     className={classNames({
+                        [styles.activeTab]: activeTab === key,
+                     })}
+                  >
+                     <button onClick={() => onClick(key)} disabled={disabled}>
+                        {title}
+                     </button>
+                  </li>
+               );
+            })}
+         </ul>
+      </div>
    );
 };
 

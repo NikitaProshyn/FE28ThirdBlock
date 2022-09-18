@@ -9,6 +9,8 @@ const Input: FC<InputPropsType> = ({
    placeholder = '',
    disabled,
    error,
+   onBlur,
+   className,
 }) => {
    const onInputChange = (evt: ChangeEvent<HTMLInputElement>) => {
       onChange(evt.target.value);
@@ -21,6 +23,7 @@ const Input: FC<InputPropsType> = ({
          placeholder={placeholder}
          className={`${styles.input} ${error ? styles.error : ''}`}
          disabled={disabled}
+         onBlur={onBlur}
       />
    );
 };

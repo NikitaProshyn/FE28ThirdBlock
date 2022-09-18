@@ -1,0 +1,18 @@
+.title {
+   font-family: 'Inter';
+   font-style: normal;
+   font-weight: 700;
+   font-size: 56px;
+   line-height: 80px;
+   color: #313037;
+}
+.wraperTitle {
+   width: 212px;
+   text-align: start;
+}
+.darkTheme {
+   background-color: #313037;
+}
+.darkTheme .title {
+   color: #ffffff;
+}

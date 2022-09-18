@@ -1,0 +1,73 @@
+.container {
+   width: 1120px;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-around;
+   align-items: center;
+   height: 100%;
+   margin: 0 auto;
+}
+
+.backToHome {
+   font-family: 'Inter';
+   font-weight: 400;
+   font-size: 16px;
+   color: #313037;
+   margin-bottom: 32px;
+}
+
+.headForm {
+   margin-bottom: 72px;
+   align-self: flex-start;
+   padding: 20px;
+}
+
+.formContainer {
+   padding: 40px;
+   border: 1px solid #dadada;
+   background-color: #f3f3f3;
+   width: 624px;
+   display: flex;
+   flex-direction: column;
+   gap: 40px;
+   margin-bottom: 72px;
+   align-items: center;
+}
+
+.inputContainer {
+   display: flex;
+   flex-direction: column;
+   gap: 8px;
+}
+
+.darkTheme .backToHome {
+   color: #ffffff;
+}
+
+.backToHome {
+   font-size: 16px;
+   font-family: 'Inter';
+   line-height: 24px;
+   color: #313037;
+}
+
+.signUpBtn {
+   height: 56px;
+   margin-bottom: 40px;
+   width: 544px;
+   margin-top: 8px;
+}
+.haveAccount {
+   margin-bottom: 40px;
+   align-self: center;
+}
+
+.darkTheme {
+   background-color: #313037;
+   color: #ffffff;
+}
+
+.darkTheme .formContainer {
+   background-color: #313037;
+   border: 1px solid #8d8e97;
+}

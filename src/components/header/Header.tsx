@@ -1,27 +1,52 @@
 import React, { FC, useState } from 'react';
 //@ts-ignore
 import styles from './Header.module.css';
-import User from '../user/User';
-import { HeaderPropsType } from './types';
-import { SearchIcon } from '../../assets/icons';
+import classNames from 'classnames';
 
-const Header: FC<HeaderPropsType> = ({ onClick, title, className, input }) => {
+import User from '../user/User';
+import Menu from './Menu';
+import {
+   SearchIcon,
+   LightIcon,
+   DarkIcon,
+   MenuIcon,
+   Cancel,
+} from '../../assets/icons';
+
+import { useThemeContext, Theme } from '../../Context/ThemeContext/Context';
+
+const Header = ({ onClick, input, isOpened }: any) => {
+   const { theme, onChangeTheme } = useThemeContext();
+
    return (
-      <nav className={`${styles.nav} ${className || ''}`}>
-         <div
-            className={`${styles.burgerButton} ${className || ''}`}
-            onClick={onClick}
-         >
-            <p>{title}</p>
-         </div>
-         {input}
-         <div className={`${styles.userSearchWrapper} ${className || ''}`}>
-            <div className={`${styles.search} ${className || ''}`}>
-               <SearchIcon />
+      <div className={classNames(styles.header)}>
+         <nav className={styles.nav}>
+            <div className={styles.burgerButton} onClick={onClick}>
+               {isOpened ? <Cancel /> : <MenuIcon />}
             </div>
-            <User userName={'Artem Malkin'} />
-         </div>
-      </nav>
+            {input}
+            <div className={styles.userSearchWrapper}>
+               <div
+                  className={classNames(styles.sunIcon)}
+                  onClick={onChangeTheme}
+               >
+                  {theme === Theme.Dark ? <LightIcon /> : <DarkIcon />}
+               </div>
+               <div
+                  className={styles.searchIcon}
+                  onClick={() => {
+                     alert(
+                        `Hi, my name is SearchIcon and i'm help you with find`
+                     );
+                  }}
+               >
+                  <SearchIcon />
+               </div>
+               <User userName={'Artem Malkin'} />
+            </div>
+         </nav>
+         {isOpened && <Menu />}
+      </div>
    );
 };
 

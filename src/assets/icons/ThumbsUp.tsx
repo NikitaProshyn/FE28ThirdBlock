@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const ThumbsUp = ({ width = '22', height = '23' }) => {
+export const ThumbsUp = ({ width = '25', height = '25' }) => {
    return (
       <svg
          width={width}

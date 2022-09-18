@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 //@ts-ignore
 import styles from './Card.module.css';
 import classNames from 'classnames';
@@ -8,55 +8,100 @@ import {
    MoreHorisontal,
    BookMark,
 } from '../../assets/icons';
+import { CardProps } from './type';
+import { CardSize } from '../СardList/CardList';
+import { CardListType, LikeStatus } from '../../Utils/GlobaTypes';
+import { useThemeContext, Theme } from '../../Context/ThemeContext/Context';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+   setFavouritePost,
+   setLikeStatus,
+} from '../../Redux/reducers/postReducers';
+import PostsSelectors from '../../Redux/selectors/postsSelectors';
 
-export enum CardSize {
-   Large = 'large',
-   Medium = 'medium',
-   Small = 'small',
-}
+const Card: FC<CardProps> = ({ card, size }) => {
+   const { id, image, title, text, date, likeStatus } = card;
 
-const Card = ({ card, size }: any) => {
-   const { id, img, title, text, date } = card;
+   const favouritePostsList: CardListType = useSelector(
+      PostsSelectors.getFavoritePosts
+   );
+
+   const currentPostIndex = favouritePostsList.findIndex(
+      (post) => post.id === id
+   );
+   const isFavorite = currentPostIndex !== -1;
+
+   const dispatch = useDispatch();
+
+   const onAddFavourite = (event: any) => {
+      event.stopPropagation();
+      dispatch(setFavouritePost(card));
+   };
+
+   const onStatusClick = (status: LikeStatus) => {
+      dispatch(setLikeStatus({ status, id }));
+   };
+
+   const { theme } = useThemeContext();
 
    return (
-      <div
-         className={classNames(styles.card, {
-            [styles.largePost]: size === CardSize.Large,
-            [styles.mediumPost]: size === CardSize.Medium,
-            [styles.smallPost]: size === CardSize.Small,
-         })}
-      >
-         <div className={styles.cardWraper}>
-            <div className={styles.contentWraper}>
-               <div className={styles.titleWraper}>
-                  <div className={styles.date}>{date}</div>
-                  <h2 className={styles.title}>{title}</h2>
+      <>
+         <div
+            className={classNames(styles.card, {
+               [styles.largeCard]: size === CardSize.Large,
+               [styles.mediumCard]: size === CardSize.Medium,
+               [styles.smallCard]: size === CardSize.Small,
+               [styles.darkTheme]: theme === Theme.Dark,
+            })}
+         >
+            <div className={styles.textImgWrap}>
+               <div className={styles.contentWrapper}>
+                  <div className={styles.titleWrapper}>
+                     <div className={styles.date}>{date}</div>
+                     <div className={styles.title}>{title}</div>
+                  </div>
+                  {size === CardSize.Large && (
+                     <div className={styles.textWrapper}>{text}</div>
+                  )}
                </div>
-               {size === CardSize.Large && (
-                  <div className={styles.textWraper}>{text}</div>
-               )}
+               <div className={styles.imgWrapper}>
+                  <img src={image} alt="img" />
+               </div>
             </div>
-            <div className={styles.imgWraper}>
-               <div className={styles.img}>
-                  <img src={img} alt="#" />
+            <div className={styles.iconsWrapper}>
+               <div className={styles.iconsThumb}>
+                  <div
+                     onClick={() => onStatusClick(LikeStatus.Like)}
+                     className={classNames(styles.likeStatusButton, {
+                        [styles.like]: likeStatus === LikeStatus.Like,
+                     })}
+                  >
+                     <ThumbsUp /> {likeStatus === LikeStatus.Like && 1}
+                  </div>
+                  <div
+                     onClick={() => onStatusClick(LikeStatus.Dislike)}
+                     className={classNames(styles.likeStatusButton, {
+                        [styles.dislike]: likeStatus === LikeStatus.Dislike,
+                     })}
+                  >
+                     <ThumbsDown />
+                     {likeStatus === LikeStatus.Dislike && 1}
+                  </div>
                </div>
-            </div>
-            <div className={styles.iconsWraper}>
-               <div className={styles.iconThumbsUp}>
-                  <ThumbsUp />
-               </div>
-               <div className={styles.iconThubmsDown}>
-                  <ThumbsDown />
-               </div>
-               <div className={styles.bookMark}>
-                  <BookMark />
-               </div>
-               <div className={styles.moreHorisontal}>
+               <div className={styles.iconsOptions}>
+                  <div
+                     onClick={onAddFavourite}
+                     className={classNames({
+                        [styles.favouritePost]: isFavorite,
+                     })}
+                  >
+                     <BookMark />
+                  </div>
                   <MoreHorisontal />
                </div>
             </div>
          </div>
-      </div>
+      </>
    );
 };
 
