@@ -11,6 +11,8 @@ import Title from '../../components/Title';
 import Input from '../../components/Input';
 import { useThemeContext, Theme } from '../../Context/ThemeContext/Context';
 import { PathNames } from '../Router/Router';
+import { useDispatch } from 'react-redux';
+import { createNewUser } from '../../Redux/reducers/authReducer';
 
 const validateEmail = (email: any) => {
    return String(email)
@@ -21,6 +23,8 @@ const validateEmail = (email: any) => {
 };
 
 const SignUp = () => {
+   const dispatch = useDispatch();
+
    const [name, setName] = useState('');
 
    const [email, setEmail] = useState('');
@@ -54,14 +58,14 @@ const SignUp = () => {
    }, [passwordTouched, password]);
 
    useEffect(() => {
-      if (
-         confirmPasswordTouched &&
-         confirmPassword.length < 8 &&
-         confirmPassword != password
-      ) {
-         setConfirmPasswordError('Enter correct password');
+      if (confirmPasswordTouched && confirmPassword.length < 8) {
+         setConfirmPasswordError('Enter more than 8 characters');
+      } else if (confirmPasswordTouched && confirmPassword != password) {
+         setConfirmPasswordError(
+            'Confirm validation failed. Password does not match'
+         );
       } else {
-         setConfirmPassword('');
+         setConfirmPasswordError('');
       }
    }, [confirmPasswordTouched, confirmPassword, password]);
 
@@ -75,6 +79,10 @@ const SignUp = () => {
 
    const onBlurPasswordConfirm = () => {
       setConfirmPasswordTouched(true);
+   };
+
+   const onSignUp = () => {
+      dispatch(createNewUser({ username: name, email, password }));
    };
 
    return (
@@ -138,9 +146,7 @@ const SignUp = () => {
                <Button
                   type={ButtonType.Primary}
                   title={'Sign Up'}
-                  click={() => {
-                     console.log('primary');
-                  }}
+                  click={onSignUp}
                   className={styles.signUpBtn}
                   disabled={false}
                />

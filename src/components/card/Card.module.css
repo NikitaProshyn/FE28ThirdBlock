@@ -124,6 +124,7 @@
    font-size: 18px;
    line-height: 28px;
    cursor: pointer;
+   transition: 0.3s;
 }
 .title:hover {
    color: #1fd128;
@@ -154,11 +155,16 @@
    width: 100%;
 }
 
-.iconsThumb :first-child {
-   margin-right: 52px;
+.iconsThumb {
+   cursor: pointer;
+   display: flex;
+   gap: 52px;
 }
-.iconsOptions :first-child {
-   margin-right: 30px;
+
+.iconsOptions {
+   display: flex;
+   gap: 30px;
+   cursor: pointer;
 }
 
 .darkTheme {
@@ -166,11 +172,15 @@
 }
 
 .darkTheme .date {
-   color: #8d8e97;
+   color: #fff;
 }
 
 .darkTheme .textWrapper {
-   color: #8d8e97;
+   color: #fff;
+}
+
+.darkTheme .title {
+   color: #fff;
 }
 
 .likeStatusButton {
@@ -181,7 +191,7 @@
 }
 
 .like svg path {
-   fill: #2231aa;
+   fill: #000c68;
 }
 .dislike svg path {
    fill: red;

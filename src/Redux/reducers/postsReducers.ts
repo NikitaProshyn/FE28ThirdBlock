@@ -11,6 +11,9 @@ type PostStateType = {
    activeTab: TabsNames;
    cardsList: CardListType;
    favouritePostsList: CardListType;
+   selectedImgPost: CardPostType | null;
+   singlePostModalVisible: boolean;
+   singleImgModalVisible: boolean;
 };
 
 const INITIAL_STATE: PostStateType = {
@@ -18,6 +21,9 @@ const INITIAL_STATE: PostStateType = {
    activeTab: TabsNames.All,
    cardsList: [],
    favouritePostsList: [],
+   selectedImgPost: null,
+   singlePostModalVisible: false,
+   singleImgModalVisible: false,
 };
 
 const postsReducer = createSlice({
@@ -38,6 +44,7 @@ const postsReducer = createSlice({
             };
          });
       },
+      getPosts: (state, action: PayloadAction<undefined>) => {},
       setFavouritePost: (state, action: PayloadAction<CardPostType>) => {
          const { id } = action.payload;
          const postIndex = state.favouritePostsList.findIndex(
@@ -53,25 +60,37 @@ const postsReducer = createSlice({
          state,
          action: PayloadAction<{ status: LikeStatus; id: number }>
       ) => {
-         const post = state.cardsList.find(
+         const card = state.cardsList.find(
             (val) => val.id === action.payload.id
          );
          const postIndex = state.cardsList.findIndex(
             (val) => val.id === action.payload.id
          );
-         if (post && postIndex !== -1) {
-            if (post.likeStatus === action.payload.status) {
+         if (card && postIndex !== -1) {
+            if (card.likeStatus === action.payload.status) {
                state.cardsList.splice(postIndex, 1, {
-                  ...post,
+                  ...card,
                   likeStatus: null,
                });
             } else {
                state.cardsList.splice(postIndex, 1, {
-                  ...post,
+                  ...card,
                   likeStatus: action.payload.status,
                });
             }
          }
+      },
+      setSinglePostModalVisible: (state, action: PayloadAction<boolean>) => {
+         state.singlePostModalVisible = action.payload;
+      },
+      setSelectedImgPost: (
+         state,
+         action: PayloadAction<CardPostType | null>
+      ) => {
+         state.selectedImgPost = action.payload;
+      },
+      setSingleImgModalVisible: (state, action: PayloadAction<boolean>) => {
+         state.singleImgModalVisible = action.payload;
       },
    },
 });
@@ -84,4 +103,8 @@ export const {
    setCardsList,
    setFavouritePost,
    setLikeStatus,
+   setSingleImgModalVisible,
+   setSelectedImgPost,
+   setSinglePostModalVisible,
+   getPosts,
 } = postsReducer.actions;

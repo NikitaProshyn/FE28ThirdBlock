@@ -19,3 +19,15 @@ export type CardPostType = {
    likeStatus?: LikeStatus | null;
 };
 export type CardListType = Array<CardPostType>;
+
+export type ModalWindowPropsType = {
+   active: boolean;
+   closeModal: (event: any) => void;
+   children: React.ReactNode;
+};
+
+export type UserActionPayload = {
+   username: string;
+   password: string;
+   email: string;
+};

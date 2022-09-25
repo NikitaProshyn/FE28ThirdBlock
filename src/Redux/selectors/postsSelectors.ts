@@ -1,6 +1,9 @@
 export default {
-   getSelectedPost: (state: any) => state.postsReducer.selectedPost,
-   getActiveTab: (state: any) => state.postsReducer.activeTab,
-   getCardsList: (state: any) => state.postsReducer.cardsList,
-   getFavoritePosts: (state: any) => state.postsReducer.favouritePostsList,
+   getSelectedPost: (state: any) => state.postReducers.selectedPost,
+   getActiveTab: (state: any) => state.postReducers.activeTab,
+   getCardsList: (state: any) => state.postReducers.cardsList,
+   getFavoritePosts: (state: any) => state.postReducers.favouritePostsList,
+   getSelectedImgPost: (state: any) => state.postReducers.selectedImgPost,
+   getIsModalVisible: (state: any) => state.postReducers.singlePostModalVisible,
+   getIsImgVisible: (state: any) => state.postReducers.singleImgModalVisible,
 };

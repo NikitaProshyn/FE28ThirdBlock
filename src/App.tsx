@@ -10,6 +10,7 @@ import store from './Redux/store';
 import Router from './Pages/Router';
 import { changeTheme } from './Redux/reducers/themeReducer';
 import ThemeSelectors from './Redux/selectors/themeSelectors';
+import Blog from './Pages/Blog';
 
 const App = () => {
    const theme = useSelector(ThemeSelectors.getTheme);

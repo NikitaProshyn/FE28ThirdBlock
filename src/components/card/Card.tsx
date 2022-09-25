@@ -16,8 +16,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
    setFavouritePost,
    setLikeStatus,
-} from '../../Redux/reducers/postReducers';
+   setSelectedPost,
+   setSelectedImgPost,
+   setSingleImgModalVisible,
+   setSinglePostModalVisible,
+} from '../../Redux/reducers/postsReducers';
 import PostsSelectors from '../../Redux/selectors/postsSelectors';
+import { useNavigate } from 'react-router-dom';
 
 const Card: FC<CardProps> = ({ card, size }) => {
    const { id, image, title, text, date, likeStatus } = card;
@@ -25,6 +30,12 @@ const Card: FC<CardProps> = ({ card, size }) => {
    const favouritePostsList: CardListType = useSelector(
       PostsSelectors.getFavoritePosts
    );
+
+   const navigate = useNavigate();
+
+   const onNavigaToPost = () => {
+      navigate(`/posts/${id}`);
+   };
 
    const currentPostIndex = favouritePostsList.findIndex(
       (post) => post.id === id
@@ -40,6 +51,17 @@ const Card: FC<CardProps> = ({ card, size }) => {
 
    const onStatusClick = (status: LikeStatus) => {
       dispatch(setLikeStatus({ status, id }));
+   };
+
+   const onOpenPostModal = (event: any) => {
+      event.stopPropagation();
+      dispatch(setSelectedPost(card));
+      dispatch(setSinglePostModalVisible(true));
+   };
+   const onOpenImgModal = (event: any) => {
+      event.stopPropagation();
+      dispatch(setSelectedImgPost(card));
+      dispatch(setSingleImgModalVisible(true));
    };
 
    const { theme } = useThemeContext();
@@ -64,7 +86,7 @@ const Card: FC<CardProps> = ({ card, size }) => {
                      <div className={styles.textWrapper}>{text}</div>
                   )}
                </div>
-               <div className={styles.imgWrapper}>
+               <div className={styles.imgWrapper} onClick={onOpenImgModal}>
                   <img src={image} alt="img" />
                </div>
             </div>
@@ -97,7 +119,12 @@ const Card: FC<CardProps> = ({ card, size }) => {
                   >
                      <BookMark />
                   </div>
-                  <MoreHorisontal />
+                  <div
+                     className={classNames(styles.moreHorisontal)}
+                     onClick={onOpenPostModal}
+                  >
+                     <MoreHorisontal />
+                  </div>
                </div>
             </div>
          </div>
