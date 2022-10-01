@@ -9,6 +9,8 @@ import {
 import ModalWindow from '../../../../components/ModalWindow';
 
 const SingleImgModal = () => {
+   const imgModalVisible = useSelector(postsSelectors.getIsImgVisible);
+
    const card = useSelector(postsSelectors.getSelectedImgPost);
 
    const isVisible = useSelector(postsSelectors.getIsImgVisible);
@@ -21,7 +23,11 @@ const SingleImgModal = () => {
    };
 
    return card ? (
-      <ModalWindow active={isVisible} closeModal={onClose}>
+      <ModalWindow
+         active={isVisible}
+         closeModal={onClose}
+         imgModalVisible={imgModalVisible}
+      >
          <img src={card.image} alt="img" />
       </ModalWindow>
    ) : null;

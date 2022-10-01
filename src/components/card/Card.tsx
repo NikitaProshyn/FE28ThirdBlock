@@ -67,68 +67,66 @@ const Card: FC<CardProps> = ({ card, size }) => {
    const { theme } = useThemeContext();
 
    return (
-      <>
-         <div
-            className={classNames(styles.card, {
-               [styles.largeCard]: size === CardSize.Large,
-               [styles.mediumCard]: size === CardSize.Medium,
-               [styles.smallCard]: size === CardSize.Small,
-               [styles.darkTheme]: theme === Theme.Dark,
-            })}
-         >
-            <div className={styles.textImgWrap}>
-               <div className={styles.contentWrapper}>
-                  <div className={styles.titleWrapper}>
-                     <div className={styles.date}>{date}</div>
-                     <div className={styles.title}>{title}</div>
-                  </div>
-                  {size === CardSize.Large && (
-                     <div className={styles.textWrapper}>{text}</div>
-                  )}
+      <div
+         className={classNames(styles.card, {
+            [styles.largeCard]: size === CardSize.Large,
+            [styles.mediumCard]: size === CardSize.Medium,
+            [styles.smallCard]: size === CardSize.Small,
+            [styles.darkTheme]: theme === Theme.Dark,
+         })}
+      >
+         <div className={styles.textImgWrap}>
+            <div className={styles.contentWrapper}>
+               <div className={styles.titleWrapper}>
+                  <div className={styles.date}>{date}</div>
+                  <div className={styles.title}>{title}</div>
                </div>
-               <div className={styles.imgWrapper} onClick={onOpenImgModal}>
-                  <img src={image} alt="img" />
+               {size === CardSize.Large && (
+                  <div className={styles.textWrapper}>{text}</div>
+               )}
+            </div>
+            <div className={styles.imgWrapper} onClick={onOpenImgModal}>
+               <img src={image} alt="img" />
+            </div>
+         </div>
+         <div className={styles.iconsWrapper}>
+            <div className={styles.iconsThumb}>
+               <div
+                  onClick={() => onStatusClick(LikeStatus.Like)}
+                  className={classNames(styles.likeStatusButton, {
+                     [styles.like]: likeStatus === LikeStatus.Like,
+                  })}
+               >
+                  <ThumbsUp /> {likeStatus === LikeStatus.Like && 1}
+               </div>
+               <div
+                  onClick={() => onStatusClick(LikeStatus.Dislike)}
+                  className={classNames(styles.likeStatusButton, {
+                     [styles.dislike]: likeStatus === LikeStatus.Dislike,
+                  })}
+               >
+                  <ThumbsDown />
+                  {likeStatus === LikeStatus.Dislike && 1}
                </div>
             </div>
-            <div className={styles.iconsWrapper}>
-               <div className={styles.iconsThumb}>
-                  <div
-                     onClick={() => onStatusClick(LikeStatus.Like)}
-                     className={classNames(styles.likeStatusButton, {
-                        [styles.like]: likeStatus === LikeStatus.Like,
-                     })}
-                  >
-                     <ThumbsUp /> {likeStatus === LikeStatus.Like && 1}
-                  </div>
-                  <div
-                     onClick={() => onStatusClick(LikeStatus.Dislike)}
-                     className={classNames(styles.likeStatusButton, {
-                        [styles.dislike]: likeStatus === LikeStatus.Dislike,
-                     })}
-                  >
-                     <ThumbsDown />
-                     {likeStatus === LikeStatus.Dislike && 1}
-                  </div>
+            <div className={styles.iconsOptions}>
+               <div
+                  onClick={onAddFavourite}
+                  className={classNames({
+                     [styles.favouritePost]: isFavorite,
+                  })}
+               >
+                  <BookMark />
                </div>
-               <div className={styles.iconsOptions}>
-                  <div
-                     onClick={onAddFavourite}
-                     className={classNames({
-                        [styles.favouritePost]: isFavorite,
-                     })}
-                  >
-                     <BookMark />
-                  </div>
-                  <div
-                     className={classNames(styles.moreHorisontal)}
-                     onClick={onOpenPostModal}
-                  >
-                     <MoreHorisontal />
-                  </div>
+               <div
+                  className={classNames(styles.moreHorisontal)}
+                  onClick={onOpenPostModal}
+               >
+                  <MoreHorisontal />
                </div>
             </div>
          </div>
-      </>
+      </div>
    );
 };
 

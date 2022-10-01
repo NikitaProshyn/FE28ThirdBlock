@@ -24,6 +24,8 @@ export type ModalWindowPropsType = {
    active: boolean;
    closeModal: (event: any) => void;
    children: React.ReactNode;
+   cardModalVisible?: string;
+   imgModalVisible?: string;
 };
 
 export type UserActionPayload = {

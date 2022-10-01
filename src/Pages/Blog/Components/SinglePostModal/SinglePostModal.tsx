@@ -11,9 +11,11 @@ import postsSelectors from '../../../../Redux/selectors/postsSelectors';
 import card from '../../../../components/card';
 
 const SingePostModal = () => {
+   const cardModalVisible = useSelector(postsSelectors.getIsModalVisible);
+
    const card = useSelector(postsSelectors.getSelectedPost);
 
-   const isVisible = useSelector(postsSelectors.getIsImgVisible);
+   const isVisible = useSelector(postsSelectors.getIsModalVisible);
 
    const dispatch = useDispatch();
 
@@ -24,7 +26,11 @@ const SingePostModal = () => {
    };
 
    return card ? (
-      <ModalWindow active={isVisible} closeModal={onClose}>
+      <ModalWindow
+         active={isVisible}
+         closeModal={onClose}
+         cardModalVisible={cardModalVisible}
+      >
          <Card size={CardSize.Large} card={card} />
       </ModalWindow>
    ) : null;

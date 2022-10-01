@@ -3,6 +3,7 @@ import React, { FC, useState } from 'react';
 import styles from './Header.module.css';
 import classNames from 'classnames';
 
+import { HeaderPropsType } from './types';
 import User from '../user/User';
 import Menu from './Menu';
 import {
@@ -15,7 +16,7 @@ import {
 
 import { useThemeContext, Theme } from '../../Context/ThemeContext/Context';
 
-const Header = ({ onClick, input, isOpened }: any) => {
+const Header: FC<HeaderPropsType> = ({ onClick, input, isOpened }) => {
    const { theme, onChangeTheme } = useThemeContext();
 
    return (

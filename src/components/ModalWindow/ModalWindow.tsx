@@ -12,10 +12,10 @@ const ModalWindow: FC<ModalWindowPropsType> = ({
    active,
    closeModal,
    children,
+   cardModalVisible,
+   imgModalVisible,
 }) => {
    const { theme } = useThemeContext();
-   const postModal = useSelector(postsSelectors.getIsModalVisible);
-   const imgModal = useSelector(postsSelectors.getIsImgVisible);
 
    return (
       <div
@@ -27,8 +27,8 @@ const ModalWindow: FC<ModalWindowPropsType> = ({
       >
          <div
             className={classNames({
-               [styles.modalContent]: postModal,
-               [styles.modalContentImg]: imgModal,
+               [styles.modalContent]: cardModalVisible,
+               [styles.modalContentImg]: imgModalVisible,
             })}
          >
             {children}
