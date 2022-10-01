@@ -1,0 +1,21 @@
+.searchListWrapper {
+   display: flex;
+   flex-direction: column;
+}
+
+.searchListTitle {
+   font-style: normal;
+   font-weight: 700;
+   font-size: 56px;
+   line-height: 80px;
+   margin-bottom: 65px;
+}
+
+.searchListCardWrapper {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   overflow-x: hidden;
+   overflow-y: auto;
+}
