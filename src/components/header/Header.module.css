@@ -62,3 +62,18 @@ nav {
 .burgerButton:hover svg > path {
    fill: rgb(204, 209, 255);
 }
+
+.noUserIconContainer {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 84px;
+   cursor: pointer;
+}
+.noUserIconContainer:hover {
+   cursor: pointer;
+   background-color: #f3f3f3;
+}
+.noUserIconContainer:hover svg > path {
+   stroke: rgb(83, 96, 205);
+}

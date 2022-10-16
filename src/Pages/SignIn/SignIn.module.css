@@ -36,6 +36,10 @@
    margin-bottom: 32px;
 }
 
+.backToHome:hover {
+   color: green;
+}
+
 .darkTheme .backToHome {
    color: #ffffff;
 }

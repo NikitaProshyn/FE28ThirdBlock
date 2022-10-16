@@ -1,3 +1,5 @@
+import { LikeStatus } from '../../Utils/GlobaTypes';
+
 export type PostPropsType = {
    id: number;
    image: string;
@@ -6,6 +8,7 @@ export type PostPropsType = {
    lesson_num: number;
    title: string;
    author: number;
+   likeStatus?: LikeStatus | null;
 };
 
 export type PostProps = {

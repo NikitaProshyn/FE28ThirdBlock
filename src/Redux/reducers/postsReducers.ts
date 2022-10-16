@@ -14,6 +14,8 @@ type PostStateType = {
    selectedImgPost: CardPostType | null;
    singlePostModalVisible: boolean;
    singleImgModalVisible: boolean;
+   singlePost: CardPostType | null;
+   isPostLoading: boolean;
 };
 
 const INITIAL_STATE: PostStateType = {
@@ -24,12 +26,21 @@ const INITIAL_STATE: PostStateType = {
    selectedImgPost: null,
    singlePostModalVisible: false,
    singleImgModalVisible: false,
+   singlePost: null,
+   isPostLoading: false,
 };
 
 const postsReducer = createSlice({
    name: 'posts',
    initialState: INITIAL_STATE,
    reducers: {
+      getSinglePost: (state, action: PayloadAction<string>) => {},
+      setSinglePost: (state, action: PayloadAction<CardPostType>) => {
+         state.singlePost = action.payload;
+      },
+      setSinglePostLoading: (state, action: PayloadAction<boolean>) => {
+         state.isPostLoading = action.payload;
+      },
       setSelectedPost: (state, action: PayloadAction<CardPostType | null>) => {
          state.selectedPost = action.payload;
       },
@@ -107,4 +118,7 @@ export const {
    setSelectedImgPost,
    setSinglePostModalVisible,
    getPosts,
+   getSinglePost,
+   setSinglePost,
+   setSinglePostLoading,
 } = postsReducer.actions;

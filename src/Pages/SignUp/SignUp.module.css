@@ -51,6 +51,10 @@
    color: #313037;
 }
 
+.backToHome:hover {
+   color: green;
+}
+
 .signUpBtn {
    height: 56px;
    margin-bottom: 40px;

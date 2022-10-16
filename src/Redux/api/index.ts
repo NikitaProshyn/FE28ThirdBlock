@@ -1,5 +1,5 @@
 import { create } from 'apisauce';
-import { UserActionPayload } from '../../Utils/GlobaTypes';
+import { ActivationParams, UserActionPayload } from '../../Utils/GlobaTypes';
 
 const API = create({
    baseURL: 'https://studapi.teachmeskills.by',
@@ -13,4 +13,12 @@ const getPostsList = () => {
    return API.get('/blog/posts/?limit=11');
 };
 
-export default { createNewUser, getPostsList };
+const activateNewUser = (params: ActivationParams) => {
+   return API.post('/auth/users/activation/', params);
+};
+
+const getPost = (id: string) => {
+   return API.get(`/blog/posts/${id}/`);
+};
+
+export default { createNewUser, getPostsList, getPost, activateNewUser };

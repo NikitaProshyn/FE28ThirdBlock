@@ -1,10 +1,10 @@
 import React, { FC, useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 //@ts-ignore
 import styles from './SignIn.module.css';
 import classNames from 'classnames';
 
-import Button, { ButtonType } from '../../components/Button';
+import Button, { ButtonType } from '../../components/button';
 import Title from '../../components/Title';
 import Label from '../../components/Label';
 import Input from '../../components/Input';
@@ -67,7 +67,9 @@ const SignIn = () => {
          })}
       >
          <div className={styles.headForm}>
-            <div className={classNames(styles.backToHome)}>Back to Home</div>
+            <NavLink to={PathNames.Home} className={styles.backToHome}>
+               Back to Home
+            </NavLink>
             <Title title={'Sign In'} />
          </div>
          <div className={styles.formContainer}>

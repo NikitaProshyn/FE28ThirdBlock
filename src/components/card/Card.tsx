@@ -33,10 +33,6 @@ const Card: FC<CardProps> = ({ card, size }) => {
 
    const navigate = useNavigate();
 
-   const onNavigaToPost = () => {
-      navigate(`/posts/${id}`);
-   };
-
    const currentPostIndex = favouritePostsList.findIndex(
       (post) => post.id === id
    );
@@ -66,6 +62,10 @@ const Card: FC<CardProps> = ({ card, size }) => {
 
    const { theme } = useThemeContext();
 
+   const onCardClick = () => {
+      navigate(`/content/${id}`);
+   };
+
    return (
       <div
          className={classNames(styles.card, {
@@ -74,6 +74,7 @@ const Card: FC<CardProps> = ({ card, size }) => {
             [styles.smallCard]: size === CardSize.Small,
             [styles.darkTheme]: theme === Theme.Dark,
          })}
+         onClick={onCardClick}
       >
          <div className={styles.textImgWrap}>
             <div className={styles.contentWrapper}>

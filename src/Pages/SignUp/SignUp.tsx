@@ -1,11 +1,11 @@
 import React, { FC, useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 //@ts-ignore
 import styles from './SignUp.module.css';
 import { validateEmailPropsType } from './types';
 import classNames from 'classnames';
 
-import Button, { ButtonType } from '../../components/Button';
+import Button, { ButtonType } from '../../components/button';
 import Label from '../../components/Label';
 import Title from '../../components/Title';
 import Input from '../../components/Input';
@@ -92,7 +92,9 @@ const SignUp = () => {
          })}
       >
          <div className={styles.headForm}>
-            <div className={styles.backToHome}>Back to Home</div>
+            <NavLink to={PathNames.Home} className={styles.backToHome}>
+               Back to Home
+            </NavLink>
             <Title title={'Sign Up'}></Title>
          </div>
          <div className={styles.formContainer}>

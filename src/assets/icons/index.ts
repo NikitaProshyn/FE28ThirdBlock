@@ -1,3 +1,4 @@
+import { UserIcon } from './UserIcon';
 export { SearchIcon } from './SearchIcon';
 export { Burger } from './Burger';
 export { Cancel } from './Cancel';
@@ -8,3 +9,4 @@ export { MoreHorisontal } from './MoreHorisontal';
 export { DarkIcon } from './DarkIcon';
 export { LightIcon } from './LightIcon';
 export { MenuIcon } from './MenuIcon';
+export { UserIcon } from './UserIcon';

@@ -6,4 +6,6 @@ export default {
    getSelectedImgPost: (state: any) => state.postReducers.selectedImgPost,
    getIsModalVisible: (state: any) => state.postReducers.singlePostModalVisible,
    getIsImgVisible: (state: any) => state.postReducers.singleImgModalVisible,
+   getSinglePost: (state: any) => state.postReducers.singlePost,
+   getSinglePostLoading: (state: any) => state.postReducers.isPostLoading,
 };

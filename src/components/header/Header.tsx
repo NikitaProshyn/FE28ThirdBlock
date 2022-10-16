@@ -12,12 +12,25 @@ import {
    DarkIcon,
    MenuIcon,
    Cancel,
+   UserIcon,
 } from '../../assets/icons';
 
 import { useThemeContext, Theme } from '../../Context/ThemeContext/Context';
+import { useSelector } from 'react-redux';
+import AuthSelectors from '../../Redux/selectors/authSelectors';
+import { useNavigate } from 'react-router-dom';
+import { PathNames } from '../../Pages/Router/Router';
 
 const Header: FC<HeaderPropsType> = ({ onClick, input, isOpened }) => {
    const { theme, onChangeTheme } = useThemeContext();
+
+   const currentUser = useSelector(AuthSelectors.getCurrentUser);
+
+   const navigate = useNavigate();
+
+   const onSignInClick = () => {
+      navigate(PathNames.SignIn);
+   };
 
    return (
       <div className={classNames(styles.header)}>
@@ -43,7 +56,16 @@ const Header: FC<HeaderPropsType> = ({ onClick, input, isOpened }) => {
                >
                   <SearchIcon />
                </div>
-               <User userName={'Artem Malkin'} />
+               {currentUser ? (
+                  <User userName={'Artem Malkin'} />
+               ) : (
+                  <div
+                     className={styles.noUserIconContainer}
+                     onClick={onSignInClick}
+                  >
+                     <UserIcon />
+                  </div>
+               )}
             </div>
          </nav>
          {isOpened && <Menu />}

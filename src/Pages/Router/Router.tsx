@@ -13,13 +13,16 @@ import SignUp from '../SignUp';
 import Search from '../Search';
 import PostPage from '../PostPage';
 import PagesWraper from '../PagesWraper';
+import ActivateUser from '../ActiveUser';
 
 export enum PathNames {
    Home = '/',
    SignIn = '/sign-in',
    SignUp = '/sign-up',
    Search = '/search',
-   PostPage = '/content',
+   PostPage = '/content/:id',
+   Blog = '/blog',
+   ActivateUser = '/activate/:uid/:token',
 }
 
 const Router = () => {
@@ -31,6 +34,10 @@ const Router = () => {
                <Route path={PathNames.SignUp} element={<SignUp />} />
                <Route path={PathNames.Search} element={<Search />} />
                <Route path={PathNames.PostPage} element={<PostPage />} />
+               <Route
+                  path={PathNames.ActivateUser}
+                  element={<ActivateUser />}
+               />
             </Route>
             <Route path={'*'} element={<Navigate to={PathNames.SignIn} />} />
          </Routes>
